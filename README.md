@@ -1,6 +1,6 @@
 # 백섥이 클라이엔트
-A client for syncing to a dDNS service provided by Hurricane Electric
-This client will run in the background; it will generate an icon on the system tray where you can control it.
+A client for syncing to a dDNS service provided by [Hurricane Electric](https://dns.he.net)\
+This client will run in the background; it will generate an icon on the system tray where you can control it.\
 Hovering your cursor over the program will show you a brief information, such as latest sync time and following server response.
 
 ## Menus
