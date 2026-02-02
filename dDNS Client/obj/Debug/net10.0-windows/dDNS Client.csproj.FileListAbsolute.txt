@@ -1,0 +1,20 @@
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\bin\Debug\net10.0-windows\dDNS Client.exe
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\bin\Debug\net10.0-windows\dDNS Client.deps.json
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\bin\Debug\net10.0-windows\dDNS Client.runtimeconfig.json
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\bin\Debug\net10.0-windows\dDNS Client.dll
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\bin\Debug\net10.0-windows\dDNS Client.pdb
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.csproj.GenerateResource.cache
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.AssemblyInfoInputs.cache
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.AssemblyInfo.cs
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.csproj.CoreCompileInputs.cache
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.dll
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\refint\dDNS Client.dll
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.pdb
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS Client.genruntimeconfig.cache
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\ref\dDNS Client.dll
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS_Client.TargetSettings.resources
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS_Client.main.resources
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS_Client.HostSettings.resources
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS_Client.RateSettings.resources
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\obj\Debug\net10.0-windows\dDNS_Client.Properties.Resources.resources
