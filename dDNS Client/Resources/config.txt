@@ -1,4 +1,4 @@
-hostname:xn--wb0bo33d.monster
-authtoken:I6uFGvRDbnic0V9x
+hostname:
+authtoken:
 refreshdelay:60
 dDNSHost:dyn.dns.he.net/nic/update?hostname=
