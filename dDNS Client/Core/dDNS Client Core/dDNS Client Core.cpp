@@ -4,7 +4,7 @@
 #define CONFIG_LABELS {"hostname", "authtoken", "refreshdelay", "dDNSHost"}  // EACH LABEL'S LENGTH MUST NOT EXCEED 255
 #include <stdio.h>
 #include <curl/curl.h>
-#include "libdDNS.h"
+#include "dDNS Client Core Header.h"
 
 
 
@@ -107,7 +107,7 @@ EXPORT_ int write_config(const char* conf_path, const char* args) {
 }
 
 
-char* make_he_url(const char* target, const char* authtoken, const char* hostname) {
+char* make_he_url(const char* target, const char* hostname) {
     size_t result_size = CONFIG_ARGUMENTS_LENGTH * CONFIG_ARGUMENTS + 64;
     char* result = (char*)malloc(result_size);
     if (!result)  return 0;
@@ -115,10 +115,6 @@ char* make_he_url(const char* target, const char* authtoken, const char* hostnam
 
     result[0] = 0;
     strcat_s(result, result_size, "https://");
-    strcat_s(result, result_size, target);
-    strcat_s(result, result_size, ":");
-    strcat_s(result, result_size, authtoken);
-    strcat_s(result, result_size, "@");
     strcat_s(result, result_size, hostname);
     strcat_s(result, result_size, target);
         
@@ -126,9 +122,12 @@ char* make_he_url(const char* target, const char* authtoken, const char* hostnam
 }
 
 
-EXPORT_ int refresh_ddns(CurlWorker* curl, const char* target, const char* authtoken, const char* hostname, char** rlt) {
+EXPORT_ int refresh_ddns(CurlWorker* curl, const char* base64authheader, const char* target, const char* hostname, char** rlt) {
     /*
     Refreshes ddns by sending GET request to Hurricane Electrics dDNS server.
+
+    base64authheader - must be given in the following format:
+    "Authorization: Basic [[base64 encoded string of (hostname):(authtoken)]]"
 
     Return code
     - 1: cURL initialization error
@@ -136,19 +135,31 @@ EXPORT_ int refresh_ddns(CurlWorker* curl, const char* target, const char* autht
     - 3: memory error
     */
     
-    struct memory chunk = { 0 };
 
     if (curl->curl) {
-        char* request_url = make_he_url(target, authtoken, hostname);
+        struct memory chunk = { 0 };
+        struct curl_slist* headers = NULL;
+        char* request_url = make_he_url(target, hostname);
         if (!request_url)  return 3;
+
 
         curl_easy_setopt(curl->curl, CURLOPT_URL, request_url);
         curl_easy_setopt(curl->curl, CURLOPT_FOLLOWLOCATION, 0L);
         curl_easy_setopt(curl->curl, CURLOPT_WRITEFUNCTION, read_response);
         curl_easy_setopt(curl->curl, CURLOPT_WRITEDATA, (void*)&chunk);
+
+        headers = curl_slist_append(headers, base64authheader);
+        if (!headers) {
+            curl_slist_free_all(headers);
+            return 1;
+        }
+        curl_easy_setopt(curl->curl, CURLOPT_HTTPHEADER, headers);
+
         CURLcode res = curl_easy_perform(curl->curl);
         
+
         free(request_url);
+        curl_slist_free_all(headers);
         if (res != CURLE_OK) {
             *rlt = (char*)curl_easy_strerror(res);
             return 2;

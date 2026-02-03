@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +41,7 @@ namespace dDNS_Client
         public static extern IntPtr read_config(string conf_path);
 
         [DllImport(Global._dllImportPath, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int refresh_ddns(ref CurlWorker curl, string target, string authtoken, string hostname, out IntPtr rlt);
+        public static extern int refresh_ddns(ref CurlWorker curl, string base64authheader, string target, string hostname, out IntPtr rlt);
 
         [DllImport(Global._dllImportPath, CallingConvention = CallingConvention.Cdecl)]
         public static extern int freeptr(IntPtr rlt);
@@ -135,35 +135,34 @@ namespace dDNS_Client
         {
             this.UpdateArgs();
 
+            string authbase64 = System.Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(args[0] + ":" + args[1]));
+
             IntPtr rlt;
-            int errcode = refresh_ddns(ref this.curl, args[0], args[1], args[3], out rlt);
+            int errcode = refresh_ddns(ref this.curl, "Authorization: Basic " + authbase64, args[0], args[3], out rlt);
             if (rlt == IntPtr.Zero) return;
 
             string message = Marshal.PtrToStringAnsi(rlt);
             switch (errcode)
             {
                 case 1:
-                    MessageBox.Show(message, "cURL Initialization Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (showreply)  MessageBox.Show(message, "cURL Initialization Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     freeptr(rlt);
-                    this.pauseToolStripMenuItem_Click(this, new EventArgs());
                     break;
                 case 2:
-                    MessageBox.Show(message, "cURL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.pauseToolStripMenuItem_Click(this, new EventArgs());
+                    if (showreply)  MessageBox.Show(message, "cURL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 case 3:
-                    MessageBox.Show(message, "Memory Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (showreply)  MessageBox.Show(message, "Memory Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     freeptr(rlt);
-                    this.pauseToolStripMenuItem_Click(this, new EventArgs());
                     break;
                 default:
-                    if (showreply) MessageBox.Show(message, "dDNS Reply", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (showreply)  MessageBox.Show(message, "dDNS Reply", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     freeptr(rlt);
                     break;
             }
 
 
-            this.SystemTray.Text = "A dDNS client for Hurricane Electric dDNS service\n\nLatest dDNS Sync: " + DateTime.Now.ToString("yyyy-MM-dd(ddd) HH:mm:ss") + "\nServer reply: " + message;
+            this.SystemTray.Text = ("A dDNS client for Hurricane Electric dDNS service\n\nLatest dDNS Sync: " + DateTime.Now.ToString("yyyy-MM-dd(ddd) HH:mm:ss") + "\nServer reply: " + message).Substring(0, 127);
         }
 
 
@@ -201,7 +200,7 @@ namespace dDNS_Client
     public static class Global
     {
         public const string WORKDIR = "C:\\Users\\siw20\\Downloads\\dDNS Client\\dDNS Client";
-        public const string _dllImportPath = WORKDIR + "\\Core\\dDNS Client Core.dll";
+        public const string _dllImportPath = WORKDIR + "\\Core\\x64\\Debug\\dDNS Client Core.dll";
         public const string CONFPATH = WORKDIR + "\\Resources\\config.txt";
         public const int CONFIG_ARGUMENTS = 4;
         public const int CONFIG_ARGUMENTS_LENGTH = 256;

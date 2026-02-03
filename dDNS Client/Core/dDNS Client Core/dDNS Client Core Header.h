@@ -25,7 +25,7 @@ extern "C" {
     EXPORT_ void freeptr(void* ptr);
     EXPORT_ char* read_config(const char* conf_path);
     EXPORT_ int write_config(const char* conf_path, const char* args);
-    EXPORT_ int refresh_ddns(CurlWorker* curl, const char* target, const char* authtoken, const char* hostname, char** rlt);
+    EXPORT_ int refresh_ddns(CurlWorker* curl, const char* base64authheader, const char* target, const char* hostname, char** rlt);
     EXPORT_ void refresh_config(const char* conf_path, const char* args);
     EXPORT_ int start(CurlWorker* curl);
     EXPORT_ void cleanup(CurlWorker* curl);

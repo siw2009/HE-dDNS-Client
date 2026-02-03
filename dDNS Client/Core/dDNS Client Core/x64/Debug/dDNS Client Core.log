@@ -1,0 +1,10 @@
+﻿  dDNS Client Core.cpp
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\Core\dDNS Client Core\dDNS Client Core.cpp(1,9): warning C4005: 'CURL_STATICLIB': macro redefinition
+      C:\Users\siw20\Downloads\dDNS Client\dDNS Client\Core\dDNS Client Core\dDNS Client Core.cpp(1,9):
+      'CURL_STATICLIB' previously declared on the command line
+  
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\Core\dDNS Client Core\dDNS Client Core Header.h(24,20): warning C4091: '__declspec(dllexport)': ignored on left of 'CurlWorker' when no variable is declared
+  (compiling source file 'dDNS%20Client%20Core.cpp')
+  
+C:\Users\siw20\Downloads\dDNS Client\dDNS Client\Core\dDNS Client Core\dDNS Client Core.cpp(17,16): warning C4091: '__declspec(dllexport)': ignored on left of 'CurlWorker' when no variable is declared
+  dDNS Client Core.vcxproj -> C:\Users\siw20\Downloads\dDNS Client\dDNS Client\Core\x64\Debug\dDNS Client Core.dll

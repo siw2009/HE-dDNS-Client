@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="dDNS Client Core/dDNS Client Core.vcxproj" Id="ee7ccd64-2dd2-4579-a41e-13478db5d1df" />
+</Solution>
