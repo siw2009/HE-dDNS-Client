@@ -162,7 +162,9 @@ namespace dDNS_Client
             }
 
 
-            this.SystemTray.Text = ("A dDNS client for Hurricane Electric dDNS service\n\nLatest dDNS Sync: " + DateTime.Now.ToString("yyyy-MM-dd(ddd) HH:mm:ss") + "\nServer reply: " + message).Substring(0, 127);
+            string statusMessage = "A dDNS client for Hurricane Electric dDNS service\n\nLatest dDNS Sync: " + DateTime.Now.ToString("yyyy-MM-dd(ddd) HH:mm:ss") + "\nServer reply: " + message;
+            if (statusMessage.Length > 127)  this.SystemTray.Text = statusMessage.Substring(0, 127);
+            else  this.SystemTray.Text = statusMessage;
         }
 
 
