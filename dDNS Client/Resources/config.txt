@@ -1,4 +1,4 @@
 hostname:
 authtoken:
-refreshdelay:60
+refreshdelay:90
 dDNSHost:dyn.dns.he.net/nic/update?hostname=
